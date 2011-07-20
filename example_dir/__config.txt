@@ -1,0 +1,23 @@
+# example_dir can be deployed to Ubuntu 10.04 LTS server with the following small modifications
+# * openssh-server installed
+# * root user added by doing:
+#   sudo passwd root
+# added "PermitRootLogin yes" to /etc/ssh/ssh_config
+
+
+
+# The following variables are used in the various scripts that need them by using the
+# load_var function.  They may be overridden by command-line options given to
+# provisionator.
+
+##### Required Variables #####
+PROVISIONING_USER="deployer"
+INITIAL_ROOT_PASS="ubuntu1"
+SSH_PORT="40787"
+
+##### Used for the updating security step #####
+NEW_ROOT_PASS="fea9dda98"
+USER_NAME="deployer"
+USER_PASS="ajU99921ew7"
+URI="your.uri.com"
+PROVISIONING_FOLDER="example_dir"
