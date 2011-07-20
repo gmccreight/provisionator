@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Version 0.7.1 (see history section at bottom of this script for more info)
+# Version 0.7.2 (see history section at bottom of this script for more info)
 #
 # This provisioning script works like this:
 #
@@ -170,6 +170,8 @@ for i in $steps; do
 done
 
 # History
+# 0.7.2 - WIP
+# WIP
 #
 # 0.7.1 - 2011-07-19
 # Started tracking history. Added support for a __config_local.txt file.
