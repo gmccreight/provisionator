@@ -95,8 +95,12 @@ fi
 # expand steps defined like: 10,15,18-21 into 10 15 18 19 20 21
 steps=$(eval $(eval "echo $steps | sed 's/,/ /g' | sed 's/\([^ ]\+\)/echo \1;/g' | sed 's/\([0-9]\+\)-\([0-9]\+\)/\`seq \1 \2\`/g'"))
 
-########## Overrides ##########
-# Take options on the command line like this:
+########## Start Overrides Section ##########
+# 
+# First, take overrides from the optional __config_local.txt file.
+# Anything in that file will override what's in the __config.txt file.
+#
+# Then, take options that were specified on the command line like this:
 # URI=192.168.168.102,SSH_PORT=30101,VB_SNAPSHOT_NAME="my snapshot"
 # And turn them into:
 #   URI="192.168.168.102"
@@ -109,13 +113,18 @@ steps=$(eval $(eval "echo $steps | sed 's/,/ /g' | sed 's/\([^ ]\+\)/echo \1;/g'
 cd $provisioning_folder
 
 cp -a __config.txt __config_generated.txt
+
 if [ -f __config_local.txt ]; then
+  echo "\n\n### __config_local.txt overrides ###\n\n" >> __config_generated.txt
  cat __config_local.txt >> __config_generated.txt
 fi
-echo "\n\n### OVERRIDES ###\n\n" >> __config_generated.txt
 
+echo "\n\n### command line overrides ###\n\n" >> __config_generated.txt
 overrides=$(eval "echo $overrides | sed 's/=/=\"/g' | sed 's/$/\"/' | sed 's/,/\"\\\n/g'")
 echo $overrides >> __config_generated.txt
+
+#
+########## End Overrides Section ##########
 
 eval `grep "^PROVISIONING_USER=" __config_generated.txt`
 eval `grep "^SSH_PORT="          __config_generated.txt`
