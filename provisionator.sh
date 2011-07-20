@@ -5,7 +5,7 @@
 # This provisioning script works like this:
 #
 standard_usage="
-                   dir        steps to         __config.txt file overrides
+                   your dir   steps to         override __config.txt file values
                    \          run (or all)    /
                     \          \             /
                      \________  \_________  /__________________
@@ -31,7 +31,7 @@ standard_usage="
 #       combination with the overrides to create a __config_generated.txt file
 #       that has options specified on the command line as at higher precedence.
 #   __config_local.txt
-#       Optional. Very similar to the __config.txt file, but with higher
+#       Optional. Similar to the __config.txt file, but with higher
 #       precedence, so you can use it to override variables you set in
 #       __config.txt.  This file has lower precedence than configuration
 #       options passed on the command line.  If you use this file, consider
